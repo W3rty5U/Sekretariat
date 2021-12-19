@@ -18,7 +18,7 @@
         <ToolBar DockPanel.Dock="Top">
             <Button>testy</Button>
         </ToolBar>
-        <TabControl>
+        <TabControl DockPanel.Dock="Bottom">
             <TabItem Header="Uczniowie">
                 <DataGrid Name="dgUczniowie"></DataGrid>
             </TabItem>
