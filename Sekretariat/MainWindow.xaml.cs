@@ -25,7 +25,7 @@ namespace Sekretariat
             InitializeComponent();
         }
 
-        struct Osoba
+        public class Osoba
         {
             string imie;
             string drugieImie;
@@ -39,25 +39,22 @@ namespace Sekretariat
             DateTime dataUrodzenia;
         }
 
-        struct Uczen
+        public class Uczen : Osoba
         {
-            Osoba osoba;
             string klasa;
             List<string> grupy;
         }
 
-        struct Nauczyciel
+        public class Nauczyciel : Osoba
         {
-            Osoba osoba;
             string wychowawstwo;
             List<string> przedmioty;
             List<Tuple<string, string>> nauczanie;
             DateTime dataZatrudnienia;
         }
 
-        struct pracownikObslugi
+        public class Pracownik : Osoba
         {
-            Osoba osoba;
             string etat;
             string opis;
             DateTime dataZatrudnienia;
