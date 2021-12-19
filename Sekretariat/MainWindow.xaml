@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sekretariat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Sekretariat" 
+        Height="600" 
+        Width="960">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Plik">
+                <MenuItem Header="Import"/>
+                <MenuItem Header="Eksport"/>
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Top">
+            <Button>testy</Button>
+        </ToolBar>
+        <TabControl>
+            <TabItem Header="Uczniowie">
+                <DataGrid Name="dgUczniowie"></DataGrid>
+            </TabItem>
+            <TabItem Header="Nauczyciele">
+                <DataGrid Name="dgNauczyciele"></DataGrid>
+            </TabItem>
+            <TabItem Header="Pracownicy obsługi">
+                <DataGrid Name="dgPracownicy"></DataGrid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
