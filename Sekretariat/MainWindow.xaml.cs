@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Sekretariat
 {
@@ -20,58 +22,58 @@ namespace Sekretariat
             nauczyciele = new List<Nauczyciel>();
             pracownicy = new List<Pracownik>();
 
-            uczniowie.Add(new Uczen() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), klasa = "3prT4", grupy = new List<string> { "3prT4 gr1" } });
-            uczniowie.Add(new Uczen() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), klasa = "3prT4", grupy = new List<string> { "3prT4 gr1" } });
-            uczniowie.Add(new Uczen() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), klasa = "3prT4", grupy = new List<string> { "3prT4 gr1" } });
+            uczniowie.Add(new Uczen() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Klasa = "3prT4", Grupy = "3prT4 gr1" });
+            uczniowie.Add(new Uczen() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Klasa = "3prT4", Grupy = "3prT4 gr1" });
+            uczniowie.Add(new Uczen() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Klasa = "3prT4", Grupy = "3prT4 gr1" });
 
             dgUczniowie.ItemsSource = uczniowie;
 
-            nauczyciele.Add(new Nauczyciel() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), wychowawstwo = "3prT4", przedmioty = new List<string> { "Angielski", "Programowanie" }, nauczanie = new List<Tuple<string, string>> { new Tuple<string, string>("Angielski", "8:00") }, dataZatrudnienia = new DateTime(2020, 9, 1) });
-            nauczyciele.Add(new Nauczyciel() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), wychowawstwo = "3prT4", przedmioty = new List<string> { "Angielski", "Programowanie" }, nauczanie = new List<Tuple<string, string>> { new Tuple<string, string>("Angielski", "8:00") }, dataZatrudnienia = new DateTime(2020, 9, 1) });
-            nauczyciele.Add(new Nauczyciel() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), wychowawstwo = "3prT4", przedmioty = new List<string> { "Angielski", "Programowanie" }, nauczanie = new List<Tuple<string, string>> { new Tuple<string, string>("Angielski", "8:00") }, dataZatrudnienia = new DateTime(2020, 9, 1) });
+            nauczyciele.Add(new Nauczyciel() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Wychowawstwo = "3prT4", Przedmioty = "Angielski, Programowanie", Nauczanie = "Angielski, 8:00", DataZatrudnienia = new DateTime(2020, 9, 1) });
+            nauczyciele.Add(new Nauczyciel() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Wychowawstwo = "3prT4", Przedmioty = "Angielski, Programowanie", Nauczanie = "Angielski, 8:00", DataZatrudnienia = new DateTime(2020, 9, 1) });
+            nauczyciele.Add(new Nauczyciel() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Wychowawstwo = "3prT4", Przedmioty = "Angielski, Programowanie", Nauczanie = "Angielski, 8:00", DataZatrudnienia = new DateTime(2020, 9, 1) });
             
             dgNauczyciele.ItemsSource = nauczyciele;
 
-            pracownicy.Add(new Pracownik() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), etat = "1/2", opis = "Koks konserwator", dataZatrudnienia = new DateTime(2019, 3, 12) });
-            pracownicy.Add(new Pracownik() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), etat = "1/2", opis = "Koks konserwator", dataZatrudnienia = new DateTime(2019, 3, 12) });
-            pracownicy.Add(new Pracownik() { imie = "Andrzej", drugieImie = "", nazwisko = "Kowalski", nazwiskoPanienskie = "", pesel = "1337_H4xx0r", plec = 'M', imieMatki = "Agata", imieOjca = "Mariusz", dataUrodzenia = new DateTime(2003, 12, 1), etat = "1/2", opis = "Koks konserwator", dataZatrudnienia = new DateTime(2019, 3, 12) });
-            
+            pracownicy.Add(new Pracownik() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Etat = "1/2", Opis = "Koks konserwator", DataZatrudnienia = new DateTime(2019, 3, 12) });
+            pracownicy.Add(new Pracownik() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Etat = "1/2", Opis = "Koks konserwator", DataZatrudnienia = new DateTime(2019, 3, 12) });
+            pracownicy.Add(new Pracownik() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoPanienskie = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Etat = "1/2", Opis = "Koks konserwator", DataZatrudnienia = new DateTime(2019, 3, 12) });
+
             dgPracownicy.ItemsSource = pracownicy;
         }
 
         public class Osoba
         {
-            public string imie { get; set; }
-            public string drugieImie { get; set; }
-            public string nazwisko { get; set; }
-            public string nazwiskoPanienskie { get; set; }
-            public string pesel { get; set; }
-            public string zdjecie { get; set; }
-            public char plec { get; set; }
-            public string imieMatki { get; set; }
-            public string imieOjca { get; set; }
-            public DateTime dataUrodzenia { get; set; }
+            public string Imie { get; set; }
+            public string DrugieImie { get; set; }
+            public string Nazwisko { get; set; }
+            public string NazwiskoPanienskie { get; set; }
+            public string Pesel { get; set; }
+            public string Zdjecie { get; set; }
+            public char Plec { get; set; }
+            public string ImieMatki { get; set; }
+            public string ImieOjca { get; set; }
+            public DateTime DataUrodzenia { get; set; }
         }
 
         public class Uczen : Osoba
         {
-            public string klasa { get; set; }
-            public List<string> grupy { get; set; }
+            public string Klasa { get; set; }
+            public string Grupy { get; set; }
         }
 
         public class Nauczyciel : Osoba
         {
-            public string wychowawstwo { get; set; }
-            public List<string> przedmioty { get; set; }
-            public List<Tuple<string, string>> nauczanie { get; set; }
-            public DateTime dataZatrudnienia { get; set; }
+            public string Wychowawstwo { get; set; }
+            public string Przedmioty { get; set; }
+            public string Nauczanie { get; set; }
+            public DateTime DataZatrudnienia { get; set; }
         }
 
         public class Pracownik : Osoba
         {
-            public string etat { get; set; }
-            public string opis { get; set; }
-            public DateTime dataZatrudnienia { get; set; }
+            public string Etat { get; set; }
+            public string Opis { get; set; }
+            public DateTime DataZatrudnienia { get; set; }
         }
     }
 }

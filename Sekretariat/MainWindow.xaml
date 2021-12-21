@@ -20,13 +20,58 @@
         </ToolBar>
         <TabControl DockPanel.Dock="Bottom">
             <TabItem Header="Uczniowie">
-                <DataGrid Name="dgUczniowie"></DataGrid>
+                <DataGrid Name="dgUczniowie" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                        <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
+                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                        <DataGridTextColumn Header="Nazwisko panieńskie" Binding="{Binding NazwiskoPanienskie}"/>
+                        <DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}"/>
+                        <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}"/>
+                        <DataGridTextColumn Header="Imię matki" Binding="{Binding ImieMatki}"/>
+                        <DataGridTextColumn Header="Imię ojca" Binding="{Binding ImieOjca}"/>
+                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                        <DataGridTextColumn Header="Klasa" Binding="{Binding Klasa}"/>
+                        <DataGridTextColumn Header="Grupy" Binding="{Binding Grupy}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             <TabItem Header="Nauczyciele">
-                <DataGrid Name="dgNauczyciele"></DataGrid>
+                <DataGrid Name="dgNauczyciele">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                        <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
+                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                        <DataGridTextColumn Header="Nazwisko panieńskie" Binding="{Binding NazwiskoPanienskie}"/>
+                        <DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}"/>
+                        <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}"/>
+                        <DataGridTextColumn Header="Imię matki" Binding="{Binding ImieMatki}"/>
+                        <DataGridTextColumn Header="Imię ojca" Binding="{Binding ImieOjca}"/>
+                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                        <DataGridTextColumn Header="Wychowawstwo" Binding="{Binding Wychowawstwo}"/>
+                        <DataGridTextColumn Header="Przedmioty" Binding="{Binding Przedmioty}"/>
+                        <DataGridTextColumn Header="Nauczanie" Binding="{Binding Nauczanie}"/>
+                        <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
             <TabItem Header="Pracownicy obsługi">
-                <DataGrid Name="dgPracownicy"></DataGrid>
+                <DataGrid Name="dgPracownicy">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
+                        <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
+                        <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                        <DataGridTextColumn Header="Nazwisko panieńskie" Binding="{Binding NazwiskoPanienskie}"/>
+                        <DataGridTextColumn Header="PESEL" Binding="{Binding Pesel}"/>
+                        <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}"/>
+                        <DataGridTextColumn Header="Imię matki" Binding="{Binding ImieMatki}"/>
+                        <DataGridTextColumn Header="Imię ojca" Binding="{Binding ImieOjca}"/>
+                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                        <DataGridTextColumn Header="Etat" Binding="{Binding Etat}"/>
+                        <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                        <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
         </TabControl>
     </DockPanel>
