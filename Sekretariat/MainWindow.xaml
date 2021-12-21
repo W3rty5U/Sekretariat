@@ -37,7 +37,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Nauczyciele">
-                <DataGrid Name="dgNauczyciele">
+                <DataGrid Name="dgNauczyciele" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                         <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
@@ -56,7 +56,7 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Pracownicy obsługi">
-                <DataGrid Name="dgPracownicy">
+                <DataGrid Name="dgPracownicy" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                         <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
