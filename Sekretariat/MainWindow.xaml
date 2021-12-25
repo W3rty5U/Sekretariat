@@ -8,6 +8,9 @@
         Title="Sekretariat" 
         Height="600" 
         Width="960">
+    <Window.Resources>
+        <local:StringToBitmapImageConverter x:Key="StringToBitmapImageConverter"/>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Plik">
@@ -22,7 +25,12 @@
         </ToolBar>
         <TabControl DockPanel.Dock="Bottom">
             <TabItem Header="Uczniowie">
-                <DataGrid Name="dgUczniowie" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid Name="dgUczniowie" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Zdjecie, Converter={StaticResource StringToBitmapImageConverter}}" MaxHeight="150" Margin="10" HorizontalAlignment="Left"/>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                         <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>

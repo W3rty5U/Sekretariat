@@ -34,7 +34,7 @@ namespace Sekretariat
         {
             AddStudentWindow window = new AddStudentWindow();
             window.Owner = this;
-            if(window.ShowDialog() == true)
+            if (window.ShowDialog() == true)
             {
                 string
                     imie = window.textboxImie.Text,
@@ -42,7 +42,7 @@ namespace Sekretariat
                     nazwisko = window.textboxNazwisko.Text,
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
-                    zdjecie = @".\img\" + imie + System.DateTime.Now.ToString("ddMMyyyyHHmmss") + ".png",
+                    zdjecie = @$".\img\{imie}{DateTime.Now:ddMMyyyyHHmmss}.png",
                     plec = window.comboboxPlec.SelectedItem.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
@@ -94,6 +94,18 @@ namespace Sekretariat
             public string Etat { get; set; }
             public string Opis { get; set; }
             public DateTime DataZatrudnienia { get; set; }
+        }
+    }
+
+    public class StringToBitmapImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return new BitmapImage(new Uri(value.ToString()));
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }
