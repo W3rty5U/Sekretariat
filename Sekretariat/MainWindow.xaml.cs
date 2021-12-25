@@ -75,5 +75,12 @@ namespace Sekretariat
             public string Opis { get; set; }
             public DateTime DataZatrudnienia { get; set; }
         }
+
+        private void addStudent_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AddStudentWindow();
+            window.Owner = this;
+            window.Show();
+        }
     }
 }

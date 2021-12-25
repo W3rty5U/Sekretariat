@@ -16,7 +16,9 @@
             </MenuItem>
         </Menu>
         <ToolBar DockPanel.Dock="Top">
-            <Button>testy</Button>
+            <Button Click="addStudent_Click">Dodaj ucznia 👨🏻‍🎓</Button>
+            <Button>Dodaj nauczyciela 👩🏻‍🏫</Button>
+            <Button>Dodaj pracownika obsługi 👩‍🍳</Button>
         </ToolBar>
         <TabControl DockPanel.Dock="Bottom">
             <TabItem Header="Uczniowie">
