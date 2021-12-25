@@ -24,7 +24,12 @@ namespace Sekretariat
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Uczen uczen = new MainWindow.Uczen();
+            DialogResult = true;
+        }
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }

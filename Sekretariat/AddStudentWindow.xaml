@@ -94,7 +94,7 @@
                 </Style>
             </StackPanel.Resources>
             <Button Name="addButton" Click="addButton_Click">Dodaj</Button>
-            <Button Name="cancelButton" IsCancel="True">Anuluj</Button>
+            <Button Name="cancelButton" IsCancel="True" Click="cancelButton_Click">Anuluj</Button>
         </StackPanel>
     </Grid>
 </Window>

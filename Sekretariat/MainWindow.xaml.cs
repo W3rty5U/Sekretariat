@@ -80,7 +80,7 @@ namespace Sekretariat
         {
             var window = new AddStudentWindow();
             window.Owner = this;
-            window.Show();
+            window.ShowDialog();
         }
     }
 }
