@@ -40,7 +40,12 @@ namespace Sekretariat
 
             dgPracownicy.ItemsSource = pracownicy;
         }
-
+        private void addStudent_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AddStudentWindow();
+            window.Owner = this;
+            window.ShowDialog();
+        }
         public class Osoba
         {
             public string Imie { get; set; }
@@ -74,13 +79,6 @@ namespace Sekretariat
             public string Etat { get; set; }
             public string Opis { get; set; }
             public DateTime DataZatrudnienia { get; set; }
-        }
-
-        private void addStudent_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new AddStudentWindow();
-            window.Owner = this;
-            window.ShowDialog();
         }
     }
 }
