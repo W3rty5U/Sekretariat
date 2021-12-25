@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media.Imaging;
 
 namespace Sekretariat
 {
@@ -22,29 +24,42 @@ namespace Sekretariat
             nauczyciele = new List<Nauczyciel>();
             pracownicy = new List<Pracownik>();
 
-            uczniowie.Add(new Uczen() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Klasa = "3prT4", Grupy = "3prT4 gr1" });
-            uczniowie.Add(new Uczen() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Klasa = "3prT4", Grupy = "3prT4 gr1" });
-            uczniowie.Add(new Uczen() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Klasa = "3prT4", Grupy = "3prT4 gr1" });
+            // Will be calling some loading functions soon™
 
             dgUczniowie.ItemsSource = uczniowie;
-
-            nauczyciele.Add(new Nauczyciel() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Wychowawstwo = "3prT4", Przedmioty = "Angielski, Programowanie", Nauczanie = "Angielski, 8:00", DataZatrudnienia = new DateTime(2020, 9, 1) });
-            nauczyciele.Add(new Nauczyciel() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Wychowawstwo = "3prT4", Przedmioty = "Angielski, Programowanie", Nauczanie = "Angielski, 8:00", DataZatrudnienia = new DateTime(2020, 9, 1) });
-            nauczyciele.Add(new Nauczyciel() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Wychowawstwo = "3prT4", Przedmioty = "Angielski, Programowanie", Nauczanie = "Angielski, 8:00", DataZatrudnienia = new DateTime(2020, 9, 1) });
-            
             dgNauczyciele.ItemsSource = nauczyciele;
-
-            pracownicy.Add(new Pracownik() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Etat = "1/2", Opis = "Koks konserwator", DataZatrudnienia = new DateTime(2019, 3, 12) });
-            pracownicy.Add(new Pracownik() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Etat = "1/2", Opis = "Koks konserwator", DataZatrudnienia = new DateTime(2019, 3, 12) });
-            pracownicy.Add(new Pracownik() { Imie = "Andrzej", DrugieImie = "", Nazwisko = "Kowalski", NazwiskoRodowe = "", Pesel = "1337_H4xx0r", Plec = 'M', ImieMatki = "Agata", ImieOjca = "Mariusz", DataUrodzenia = new DateTime(2003, 12, 1), Etat = "1/2", Opis = "Koks konserwator", DataZatrudnienia = new DateTime(2019, 3, 12) });
-
             dgPracownicy.ItemsSource = pracownicy;
         }
         private void addStudent_Click(object sender, RoutedEventArgs e)
         {
-            var window = new AddStudentWindow();
+            AddStudentWindow window = new AddStudentWindow();
             window.Owner = this;
-            window.ShowDialog();
+            if(window.ShowDialog() == true)
+            {
+                string
+                    imie = window.textboxImie.Text,
+                    drugieImie = window.textboxDrugieImie.Text,
+                    nazwisko = window.textboxNazwisko.Text,
+                    nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
+                    pesel = window.textboxPesel.Text,
+                    zdjecie = @".\img\" + imie + System.DateTime.Now.ToString("ddMMyyyyHHmmss") + ".png",
+                    plec = window.comboboxPlec.SelectedItem.ToString(),
+                    imieMatki = window.textboxImieMatki.Text,
+                    imieOjca = window.textboxImieOjca.Text,
+                    klasa = window.textboxKlasa.Text,
+                    grupy = window.textboxGrupy.Text;
+
+                if (!Directory.Exists(@".\img"))
+                    Directory.CreateDirectory(@".\img");
+
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(window.bmp));
+                FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
+                encoder.Save(fileStream);
+
+                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, Klasa = klasa, Grupy = grupy });
+                dgUczniowie.ItemsSource = uczniowie;
+            }
         }
         public class Osoba
         {

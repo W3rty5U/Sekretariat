@@ -11,7 +11,8 @@ namespace Sekretariat
     /// </summary>
     public partial class AddStudentWindow : Window
     {
-        BitmapImage bmp;
+        MainWindow.Uczen uczen;
+        public BitmapImage bmp;
         public AddStudentWindow()
         {
             InitializeComponent();
@@ -59,6 +60,11 @@ namespace Sekretariat
                 MessageBox.Show(this, "Brak lub błędnie podane imię ojca!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            if (datepickerDataUrodzenia.ToString().Equals(""))
+            {
+                MessageBox.Show(this, "Nie podano daty urodzenia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             if (!Regex.IsMatch(textboxKlasa.Text, @"^\d\w+$"))
             {
                 MessageBox.Show(this, "Brak lub błędnie podana klasa!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -70,20 +76,6 @@ namespace Sekretariat
                 return;
             }
 
-            string
-                imie = textboxImie.Text,
-                drugieImie = textboxDrugieImie.Text,
-                nazwisko = textboxNazwisko.Text,
-                nazwiskoRodowe = textboxNazwiskoRodowe.Text,
-                pesel = textboxPesel.Text,
-                zdjecie = imie + System.DateTime.Now.ToString("ddMMyyyyHHmmss"),
-                plec = comboboxPlec.SelectedItem.ToString(),
-                imieMatki = textboxImieMatki.Text,
-                imieOjca = textboxImieOjca.Text,
-                klasa = textboxKlasa.Text,
-                grupy = textboxGrupy.Text;
-
-            MainWindow.Uczen uczen = new MainWindow.Uczen();
             DialogResult = true;
         }
         private void cancelButton_Click(object sender, RoutedEventArgs e)
