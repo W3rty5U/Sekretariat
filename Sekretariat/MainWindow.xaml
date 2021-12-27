@@ -47,7 +47,12 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Nauczyciele">
-                <DataGrid Name="dgNauczyciele" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid Name="dgNauczyciele" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Zdjecie, Converter={StaticResource StringToBitmapImageConverter}}" MaxHeight="150" Margin="10" HorizontalAlignment="Left"/>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                         <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
@@ -66,7 +71,16 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Pracownicy obsługi">
-                <DataGrid Name="dgPracownicy" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid Name="dgPracownicy" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Zdjecie, Converter={StaticResource StringToBitmapImageConverter}}" MaxHeight="150" Margin="10" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Opis" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Opis}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
                         <DataGridTextColumn Header="Drugie imię" Binding="{Binding DrugieImie}"/>
