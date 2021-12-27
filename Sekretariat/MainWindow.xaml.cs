@@ -49,6 +49,8 @@ namespace Sekretariat
                     klasa = window.textboxKlasa.Text,
                     grupy = window.textboxGrupy.Text;
 
+                DateTime dataUrodzenia = window.datepickerDataUrodzenia.DisplayDate;
+
                 if (!Directory.Exists(@".\img"))
                     Directory.CreateDirectory(@".\img");
 
@@ -57,8 +59,79 @@ namespace Sekretariat
                 FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
                 encoder.Save(fileStream);
 
-                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, Klasa = klasa, Grupy = grupy });
+                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia=dataUrodzenia, Klasa = klasa, Grupy = grupy });
                 dgUczniowie.ItemsSource = uczniowie;
+            }
+        }
+
+        private void addTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            AddTeacherWindow window = new AddTeacherWindow();
+            window.Owner = this;
+            if (window.ShowDialog() == true)
+            {
+                string
+                    imie = window.textboxImie.Text,
+                    drugieImie = window.textboxDrugieImie.Text,
+                    nazwisko = window.textboxNazwisko.Text,
+                    nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
+                    pesel = window.textboxPesel.Text,
+                    zdjecie = @$".\img\{imie}{DateTime.Now:ddMMyyyyHHmmss}.png",
+                    plec = window.comboboxPlec.SelectedItem.ToString(),
+                    imieMatki = window.textboxImieMatki.Text,
+                    imieOjca = window.textboxImieOjca.Text,
+                    wychowawstwo = window.textboxWychowawstwo.Text,
+                    przedmioty = window.textboxPrzedmioty.Text,
+                    nauczanie = window.textboxNauczanie.Text;
+
+                DateTime dataUrodzenia = window.datepickerDataUrodzenia.DisplayDate;
+                DateTime dataZatrudnienia = window.datepickerDataZatrudnienia.DisplayDate;
+
+                if (!Directory.Exists(@".\img"))
+                    Directory.CreateDirectory(@".\img");
+
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(window.bmp));
+                FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
+                encoder.Save(fileStream);
+
+                nauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = dataZatrudnienia});
+                dgNauczyciele.ItemsSource = nauczyciele;
+            }
+        }
+
+        private void addStaff_Click(object sender, RoutedEventArgs e)
+        {
+            addStaffWindow window = new addStaffWindow();
+            window.Owner = this;
+            if (window.ShowDialog() == true)
+            {
+                string
+                    imie = window.textboxImie.Text,
+                    drugieImie = window.textboxDrugieImie.Text,
+                    nazwisko = window.textboxNazwisko.Text,
+                    nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
+                    pesel = window.textboxPesel.Text,
+                    zdjecie = @$".\img\{imie}{DateTime.Now:ddMMyyyyHHmmss}.png",
+                    plec = window.comboboxPlec.SelectedItem.ToString(),
+                    imieMatki = window.textboxImieMatki.Text,
+                    imieOjca = window.textboxImieOjca.Text,
+                    etat = window.textboxEtat.Text,
+                    opis = window.textboxOpis.Text;
+
+                DateTime dataUrodzenia = window.datepickerDataUrodzenia.DisplayDate;
+                DateTime dataZatrudnienia = window.datepickerDataZatrudnienia.DisplayDate;
+
+                if (!Directory.Exists(@".\img"))
+                    Directory.CreateDirectory(@".\img");
+
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(window.bmp));
+                FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
+                encoder.Save(fileStream);
+
+                pracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Etat = etat, Opis = opis, DataZatrudnienia = dataZatrudnienia});
+                dgPracownicy.ItemsSource = pracownicy;
             }
         }
         public class Osoba

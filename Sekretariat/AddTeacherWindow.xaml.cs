@@ -7,13 +7,13 @@ using System.Windows.Media.Imaging;
 namespace Sekretariat
 {
     /// <summary>
-    /// Interaction logic for AddStudentWindow.xaml
+    /// Interaction logic for AddTeacherWindow.xaml
     /// </summary>
-    public partial class AddStudentWindow : Window
+    public partial class AddTeacherWindow : Window
     {
         public BitmapImage bmp;
 
-        public AddStudentWindow()
+        public AddTeacherWindow()
         {
             InitializeComponent();
         }
@@ -65,14 +65,29 @@ namespace Sekretariat
                 MessageBox.Show(this, "Nie podano daty urodzenia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (!Regex.IsMatch(textboxKlasa.Text, @"^\d\w+$"))
+            if (!Regex.IsMatch(textboxWychowawstwo.Text, @"^\d\w+$"))
             {
-                MessageBox.Show(this, "Brak lub błędnie podana klasa!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this, "Brak lub błędnie podane wychowawstwo!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (textboxGrupy.Text.Contains(";"))
+            if (textboxPrzedmioty.Text.Equals(""))
             {
-                MessageBox.Show(this, "Niedozwolony znak (;) w grupach!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this, "Nie podano nauczanych przedmiotów!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (textboxPrzedmioty.Text.Contains(";"))
+            {
+                MessageBox.Show(this, "Niedozwolony znak (;) w przedmiotach!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (!Regex.IsMatch(textboxNauczanie.Text, @"^\d\w+\ [1-9][0-9]*(,\ \d\w+\ [1-9][0-9]*)*$"))
+            {
+                MessageBox.Show(this, "Brak lub błędnie podane nauczanie!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (datepickerDataZatrudnienia.ToString().Equals(""))
+            {
+                MessageBox.Show(this, "Nie podano daty zatrudnienia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
