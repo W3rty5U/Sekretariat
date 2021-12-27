@@ -58,6 +58,7 @@ namespace Sekretariat
                 encoder.Frames.Add(BitmapFrame.Create(window.bmp));
                 FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
                 encoder.Save(fileStream);
+                fileStream.Close();
 
                 uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Klasa = klasa, Grupy = grupy });
                 dgUczniowie.ItemsSource = uczniowie;
@@ -94,6 +95,7 @@ namespace Sekretariat
                 encoder.Frames.Add(BitmapFrame.Create(window.bmp));
                 FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
                 encoder.Save(fileStream);
+                fileStream.Close();
 
                 nauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = dataZatrudnienia });
                 dgNauczyciele.ItemsSource = nauczyciele;
@@ -129,6 +131,7 @@ namespace Sekretariat
                 encoder.Frames.Add(BitmapFrame.Create(window.bmp));
                 FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
                 encoder.Save(fileStream);
+                fileStream.Close();
 
                 pracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Etat = etat, Opis = opis, DataZatrudnienia = dataZatrudnienia });
                 dgPracownicy.ItemsSource = pracownicy;
@@ -174,7 +177,10 @@ namespace Sekretariat
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new BitmapImage(new Uri(value.ToString())); // I swear, it was working just fine 2 days ago
+            string uriString = value as string;
+            uriString = uriString.Substring(1).Replace('\\', '/');
+            uriString = AppDomain.CurrentDomain.BaseDirectory + uriString;
+            return new BitmapImage(new Uri(uriString));
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
