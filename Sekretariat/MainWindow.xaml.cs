@@ -59,7 +59,7 @@ namespace Sekretariat
                 FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
                 encoder.Save(fileStream);
 
-                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia=dataUrodzenia, Klasa = klasa, Grupy = grupy });
+                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Klasa = klasa, Grupy = grupy });
                 dgUczniowie.ItemsSource = uczniowie;
             }
         }
@@ -174,7 +174,7 @@ namespace Sekretariat
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new BitmapImage(new Uri(value.ToString()));
+            return new BitmapImage(new Uri(value.ToString())); // I swear, it was working just fine 2 days ago
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
