@@ -198,7 +198,7 @@ namespace Sekretariat
                         opis = data[12],
                         dataZatrudnienia = data[13];
 
-                    dodaniPracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = DateTime.Parse(dataUrodzenia), Etat = etat, Opis = opis, DataZatrudnienia = DateTime.Parse(dataZatrudnienia) });
+                    dodaniPracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec[0], ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = DateTime.Parse(dataUrodzenia), Etat = etat, Opis = opis, DataZatrudnienia = DateTime.Parse(dataZatrudnienia) });
                 }
                 else
                 {
