@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Sekretariat
 {
@@ -42,26 +43,19 @@ namespace Sekretariat
                     nazwisko = window.textboxNazwisko.Text,
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
-                    zdjecie = @$".\img\{imie}{DateTime.Now:ddMMyyyyHHmmss}.png",
+                    zdjecie = imie + DateTime.Now.ToString("ddMMyyyyHHmmss"),
                     plec = window.comboboxPlec.SelectedItem.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
                     klasa = window.textboxKlasa.Text,
                     grupy = window.textboxGrupy.Text;
 
-                DateTime dataUrodzenia = window.datepickerDataUrodzenia.DisplayDate;
+                DateTime dataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
 
-                if (!Directory.Exists(@".\img"))
-                    Directory.CreateDirectory(@".\img");
-
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(window.bmp));
-                FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
-                encoder.Save(fileStream);
-                fileStream.Close();
+                saveImage(zdjecie, window.bmp);
 
                 uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Klasa = klasa, Grupy = grupy });
-                dgUczniowie.ItemsSource = uczniowie;
+                dgUczniowie.Items.Refresh();
             }
         }
 
@@ -77,7 +71,7 @@ namespace Sekretariat
                     nazwisko = window.textboxNazwisko.Text,
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
-                    zdjecie = @$".\img\{imie}{DateTime.Now:ddMMyyyyHHmmss}.png",
+                    zdjecie = imie + DateTime.Now.ToString("ddMMyyyyHHmmss"),
                     plec = window.comboboxPlec.SelectedItem.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
@@ -85,20 +79,13 @@ namespace Sekretariat
                     przedmioty = window.textboxPrzedmioty.Text,
                     nauczanie = window.textboxNauczanie.Text;
 
-                DateTime dataUrodzenia = window.datepickerDataUrodzenia.DisplayDate;
-                DateTime dataZatrudnienia = window.datepickerDataZatrudnienia.DisplayDate;
+                DateTime dataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
+                DateTime dataZatrudnienia = (DateTime)window.datepickerDataZatrudnienia.SelectedDate;
 
-                if (!Directory.Exists(@".\img"))
-                    Directory.CreateDirectory(@".\img");
-
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(window.bmp));
-                FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
-                encoder.Save(fileStream);
-                fileStream.Close();
+                saveImage(zdjecie, window.bmp);
 
                 nauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = dataZatrudnienia });
-                dgNauczyciele.ItemsSource = nauczyciele;
+                dgNauczyciele.Items.Refresh();
             }
         }
 
@@ -114,29 +101,35 @@ namespace Sekretariat
                     nazwisko = window.textboxNazwisko.Text,
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
-                    zdjecie = @$".\img\{imie}{DateTime.Now:ddMMyyyyHHmmss}.png",
+                    zdjecie = imie + DateTime.Now.ToString("ddMMyyyyHHmmss"),
                     plec = window.comboboxPlec.SelectedItem.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
                     etat = window.textboxEtat.Text,
                     opis = window.textboxOpis.Text;
 
-                DateTime dataUrodzenia = window.datepickerDataUrodzenia.DisplayDate;
-                DateTime dataZatrudnienia = window.datepickerDataZatrudnienia.DisplayDate;
+                DateTime dataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
+                DateTime dataZatrudnienia = (DateTime)window.datepickerDataZatrudnienia.SelectedDate;
 
-                if (!Directory.Exists(@".\img"))
-                    Directory.CreateDirectory(@".\img");
-
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(window.bmp));
-                FileStream fileStream = new FileStream(zdjecie, FileMode.CreateNew);
-                encoder.Save(fileStream);
-                fileStream.Close();
+                saveImage(zdjecie, window.bmp);
 
                 pracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Etat = etat, Opis = opis, DataZatrudnienia = dataZatrudnienia });
-                dgPracownicy.ItemsSource = pracownicy;
+                dgPracownicy.Items.Refresh();
             }
         }
+        
+        private void saveImage(string name, BitmapImage image)
+        {
+            if (!Directory.Exists(@".\img"))
+                Directory.CreateDirectory(@".\img");
+
+            BitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            FileStream fileStream = new FileStream($@".\img\{name}.png", FileMode.CreateNew);
+            encoder.Save(fileStream);
+            fileStream.Close();
+        }
+
         public class Osoba
         {
             public string Imie { get; set; }
@@ -178,8 +171,7 @@ namespace Sekretariat
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string uriString = value as string;
-            uriString = uriString.Substring(1).Replace('\\', '/');
-            uriString = AppDomain.CurrentDomain.BaseDirectory + uriString;
+            uriString = $@"{AppDomain.CurrentDomain.BaseDirectory}img\{uriString}.png";
             return new BitmapImage(new Uri(uriString));
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

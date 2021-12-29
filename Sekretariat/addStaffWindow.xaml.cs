@@ -92,7 +92,7 @@ namespace Sekretariat
         private void choosePhotoButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Obrazy (*.png;*.jpeg)|*.png;*.jpeg|Wszystkie pliki (*.*)|*.*";
+            openFileDialog.Filter = "Obrazy (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|Wszystkie pliki (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
                 Uri uri = new Uri(openFileDialog.FileName);
