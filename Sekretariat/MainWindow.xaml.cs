@@ -24,7 +24,7 @@ namespace Sekretariat
             nauczyciele = new List<Nauczyciel>();
             pracownicy = new List<Pracownik>();
 
-            // Will be calling some loading functions soon™
+            loadData();
 
             dgUczniowie.ItemsSource = uczniowie;
             dgNauczyciele.ItemsSource = nauczyciele;
@@ -146,6 +146,69 @@ namespace Sekretariat
                 data += $"staff;{p.Imie};{p.DrugieImie};{p.Nazwisko};{p.NazwiskoRodowe};{p.Pesel};{p.Zdjecie};{p.Plec};{p.ImieMatki};{p.ImieOjca};{p.DataUrodzenia.ToShortDateString()};{p.Etat};{p.Opis};{p.DataZatrudnienia.ToShortDateString()}\n";
 
             File.WriteAllText($"{AppDomain.CurrentDomain.BaseDirectory}data.txt", data);
+        }
+
+        private void loadData()
+        {
+            if (!File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}data.txt"))
+                return;
+
+            List<Uczen> dodaniUczniowie = new List<Uczen>();
+            List<Nauczyciel> dodaniNauczyciele = new List<Nauczyciel>();
+            List<Pracownik> dodaniPracownicy = new List<Pracownik>();
+
+            foreach (string line in File.ReadAllLines($"{AppDomain.CurrentDomain.BaseDirectory}data.txt"))
+            {
+                string[] data = line.Split(';');
+
+                string
+                    imie = data[1],
+                    drugieImie = data[2],
+                    nazwisko = data[3],
+                    nazwiskoRodowe = data[4],
+                    pesel = data[5],
+                    zdjecie = data[6],
+                    plec = data[7],
+                    imieMatki = data[8],
+                    imieOjca = data[9],
+                    dataUrodzenia = data[10];
+
+                if (data[0].Equals("student"))
+                {
+                    string
+                        klasa = data[11],
+                        grupy = data[12];
+
+                    dodaniUczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec[0], ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = DateTime.Parse(dataUrodzenia), Klasa = klasa, Grupy = grupy });
+                }
+                else if (data[0].Equals("teacher"))
+                {
+                    string
+                        wychowawstwo = data[11],
+                        przedmioty = data[12],
+                        nauczanie = data[13],
+                        dataZatrudnienia = data[14];
+
+                    dodaniNauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec[0], ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = DateTime.Parse(dataUrodzenia), Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = DateTime.Parse(dataZatrudnienia) });
+                }
+                else if (data[0].Equals("staff"))
+                {
+                    string
+                        etat = data[11],
+                        opis = data[12],
+                        dataZatrudnienia = data[13];
+
+                    dodaniPracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = DateTime.Parse(dataUrodzenia), Etat = etat, Opis = opis, DataZatrudnienia = DateTime.Parse(dataZatrudnienia) });
+                }
+                else
+                {
+                    MessageBox.Show(this, "Błąd odczytu danych!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            uczniowie.AddRange(dodaniUczniowie);
+            nauczyciele.AddRange(dodaniNauczyciele);
+            pracownicy.AddRange(dodaniPracownicy);
         }
 
         public class Osoba
