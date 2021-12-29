@@ -5,7 +5,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Sekretariat
 {
@@ -56,6 +55,7 @@ namespace Sekretariat
 
                 uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Klasa = klasa, Grupy = grupy });
                 dgUczniowie.Items.Refresh();
+                saveData();
             }
         }
 
@@ -86,6 +86,7 @@ namespace Sekretariat
 
                 nauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = dataZatrudnienia });
                 dgNauczyciele.Items.Refresh();
+                saveData();
             }
         }
 
@@ -115,6 +116,7 @@ namespace Sekretariat
 
                 pracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Etat = etat, Opis = opis, DataZatrudnienia = dataZatrudnienia });
                 dgPracownicy.Items.Refresh();
+                saveData();
             }
         }
         
@@ -128,6 +130,22 @@ namespace Sekretariat
             FileStream fileStream = new FileStream($@".\img\{name}.png", FileMode.CreateNew);
             encoder.Save(fileStream);
             fileStream.Close();
+        }
+
+        private void saveData()
+        {
+            string data = "";
+
+            foreach (Uczen u in uczniowie) 
+                data += $"student;{u.Imie};{u.DrugieImie};{u.Nazwisko};{u.NazwiskoRodowe};{u.Pesel};{u.Zdjecie};{u.Plec};{u.ImieMatki};{u.ImieOjca};{u.DataUrodzenia.ToShortDateString()};{u.Klasa};{u.Grupy}\n";
+
+            foreach (Nauczyciel n in nauczyciele)
+                data += $"teacher;{n.Imie};{n.DrugieImie};{n.Nazwisko};{n.NazwiskoRodowe};{n.Pesel};{n.Zdjecie};{n.Plec};{n.ImieMatki};{n.ImieOjca};{n.DataUrodzenia.ToShortDateString()};{n.Wychowawstwo};{n.Przedmioty};{n.Nauczanie};{n.DataZatrudnienia.ToShortDateString()}\n";
+
+            foreach (Pracownik p in pracownicy)
+                data += $"staff;{p.Imie};{p.DrugieImie};{p.Nazwisko};{p.NazwiskoRodowe};{p.Pesel};{p.Zdjecie};{p.Plec};{p.ImieMatki};{p.ImieOjca};{p.DataUrodzenia.ToShortDateString()};{p.Etat};{p.Opis};{p.DataZatrudnienia.ToShortDateString()}\n";
+
+            File.WriteAllText($"{AppDomain.CurrentDomain.BaseDirectory}data.txt", data);
         }
 
         public class Osoba
