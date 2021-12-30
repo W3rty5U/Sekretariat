@@ -75,6 +75,13 @@
                         <DataGridTextColumn Header="Przedmioty" Binding="{Binding Przedmioty}"/>
                         <DataGridTextColumn Header="Nauczanie" Binding="{Binding Nauczanie}"/>
                         <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia, Converter={StaticResource DateTimeToStringConverter}}"/>
+                        <DataGridTemplateColumn Header="Edytuj">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="editTeacher_Click">Edytuj</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -102,6 +109,13 @@
                         <DataGridTextColumn Header="Etat" Binding="{Binding Etat}"/>
                         <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
                         <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia, Converter={StaticResource DateTimeToStringConverter}}"/>
+                        <DataGridTemplateColumn Header="Edytuj">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="editStaff_Click">Edytuj</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

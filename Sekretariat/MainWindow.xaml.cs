@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -45,7 +44,7 @@ namespace Sekretariat
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
                     zdjecie = imie + DateTime.Now.ToString("ddMMyyyyHHmmss"),
-                    plec = window.comboboxPlec.SelectedItem.ToString(),
+                    plec = ((ComboBoxItem)window.comboboxPlec.SelectedItem).Content.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
                     klasa = window.textboxKlasa.Text,
@@ -55,7 +54,7 @@ namespace Sekretariat
 
                 saveImage(zdjecie, window.bmp);
 
-                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Klasa = klasa, Grupy = grupy });
+                uczniowie.Add(new Uczen() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec[0], ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Klasa = klasa, Grupy = grupy });
                 dgUczniowie.Items.Refresh();
                 saveData();
             }
@@ -74,7 +73,7 @@ namespace Sekretariat
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
                     zdjecie = imie + DateTime.Now.ToString("ddMMyyyyHHmmss"),
-                    plec = window.comboboxPlec.SelectedItem.ToString(),
+                    plec = ((ComboBoxItem)window.comboboxPlec.SelectedItem).Content.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
                     wychowawstwo = window.textboxWychowawstwo.Text,
@@ -86,7 +85,7 @@ namespace Sekretariat
 
                 saveImage(zdjecie, window.bmp);
 
-                nauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = dataZatrudnienia });
+                nauczyciele.Add(new Nauczyciel() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec[0], ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Wychowawstwo = wychowawstwo, Przedmioty = przedmioty, Nauczanie = nauczanie, DataZatrudnienia = dataZatrudnienia });
                 dgNauczyciele.Items.Refresh();
                 saveData();
             }
@@ -94,7 +93,7 @@ namespace Sekretariat
 
         private void addStaff_Click(object sender, RoutedEventArgs e)
         {
-            addStaffWindow window = new addStaffWindow();
+            AddStaffWindow window = new AddStaffWindow();
             window.Owner = this;
             if (window.ShowDialog() == true)
             {
@@ -105,7 +104,7 @@ namespace Sekretariat
                     nazwiskoRodowe = window.textboxNazwiskoRodowe.Text,
                     pesel = window.textboxPesel.Text,
                     zdjecie = imie + DateTime.Now.ToString("ddMMyyyyHHmmss"),
-                    plec = window.comboboxPlec.SelectedItem.ToString(),
+                    plec = ((ComboBoxItem)window.comboboxPlec.SelectedItem).Content.ToString(),
                     imieMatki = window.textboxImieMatki.Text,
                     imieOjca = window.textboxImieOjca.Text,
                     etat = window.textboxEtat.Text,
@@ -116,7 +115,7 @@ namespace Sekretariat
 
                 saveImage(zdjecie, window.bmp);
 
-                pracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec.Equals("Kobieta") ? 'K' : 'M', ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Etat = etat, Opis = opis, DataZatrudnienia = dataZatrudnienia });
+                pracownicy.Add(new Pracownik() { Imie = imie, DrugieImie = drugieImie, Nazwisko = nazwisko, NazwiskoRodowe = nazwiskoRodowe, Pesel = pesel, Zdjecie = zdjecie, Plec = plec[0], ImieMatki = imieMatki, ImieOjca = imieOjca, DataUrodzenia = dataUrodzenia, Etat = etat, Opis = opis, DataZatrudnienia = dataZatrudnienia });
                 dgPracownicy.Items.Refresh();
                 saveData();
             }
@@ -149,7 +148,7 @@ namespace Sekretariat
                 uczniowie[index].Nazwisko = window.textboxNazwisko.Text;
                 uczniowie[index].NazwiskoRodowe = window.textboxNazwiskoRodowe.Text;
                 uczniowie[index].Pesel = window.textboxPesel.Text;
-                uczniowie[index].Plec = window.comboboxPlec.SelectedItem.ToString().Equals("Kobieta") ? 'K' : 'M';
+                uczniowie[index].Plec = ((ComboBoxItem)window.comboboxPlec.SelectedItem).Content.ToString()[0];
                 uczniowie[index].ImieMatki = window.textboxImieMatki.Text;
                 uczniowie[index].ImieOjca = window.textboxImieOjca.Text;
                 uczniowie[index].DataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
@@ -167,6 +166,102 @@ namespace Sekretariat
             }
         }
 
+        private void editTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            Nauczyciel nauczyciel = (Nauczyciel)((Button)e.Source).DataContext;
+            int index = nauczyciele.IndexOf(nauczyciel);
+
+            AddTeacherWindow window = new AddTeacherWindow();
+            window.Owner = this;
+            window.textboxImie.Text = nauczyciele[index].Imie;
+            window.textboxDrugieImie.Text = nauczyciele[index].DrugieImie;
+            window.textboxNazwisko.Text = nauczyciele[index].Nazwisko;
+            window.textboxNazwiskoRodowe.Text = nauczyciele[index].NazwiskoRodowe;
+            window.textboxPesel.Text = nauczyciele[index].Pesel;
+            window.Photo.Source = new BitmapImage(new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}img\{nauczyciele[index].Zdjecie}.png"));
+            window.comboboxPlec.SelectedItem = nauczyciele[index].Plec == 'K' ? window.comboboxPlec.Items[0] : window.comboboxPlec.Items[1];
+            window.textboxImieMatki.Text = nauczyciele[index].ImieMatki;
+            window.textboxImieOjca.Text = nauczyciele[index].ImieOjca;
+            window.datepickerDataUrodzenia.SelectedDate = nauczyciele[index].DataUrodzenia;
+            window.textboxWychowawstwo.Text = nauczyciele[index].Wychowawstwo;
+            window.textboxPrzedmioty.Text = nauczyciele[index].Przedmioty;
+            window.textboxNauczanie.Text = nauczyciele[index].Nauczanie;
+            window.datepickerDataZatrudnienia.SelectedDate = nauczyciele[index].DataZatrudnienia;
+
+            if (window.ShowDialog() == true)
+            {
+                nauczyciele[index].Imie = window.textboxImie.Text;
+                nauczyciele[index].DrugieImie = window.textboxDrugieImie.Text;
+                nauczyciele[index].Nazwisko = window.textboxNazwisko.Text;
+                nauczyciele[index].NazwiskoRodowe = window.textboxNazwiskoRodowe.Text;
+                nauczyciele[index].Pesel = window.textboxPesel.Text;
+                nauczyciele[index].Plec = ((ComboBoxItem)window.comboboxPlec.SelectedItem).Content.ToString()[0];
+                nauczyciele[index].ImieMatki = window.textboxImieMatki.Text;
+                nauczyciele[index].ImieOjca = window.textboxImieOjca.Text;
+                nauczyciele[index].DataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
+                nauczyciele[index].Wychowawstwo = window.textboxWychowawstwo.Text;
+                nauczyciele[index].Przedmioty = window.textboxPrzedmioty.Text;
+                nauczyciele[index].Nauczanie = window.textboxNauczanie.Text;
+                nauczyciele[index].DataZatrudnienia = (DateTime)window.datepickerDataZatrudnienia.SelectedDate;
+
+                if (window.bmp != null)
+                {
+                    nauczyciele[index].Zdjecie = nauczyciele[index].Imie + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                    saveImage(nauczyciele[index].Zdjecie, window.bmp);
+                }
+
+                dgNauczyciele.Items.Refresh();
+                saveData();
+            }
+        }
+
+        private void editStaff_Click(object sender, RoutedEventArgs e)
+        {
+            Pracownik pracownik = (Pracownik)((Button)e.Source).DataContext;
+            int index = pracownicy.IndexOf(pracownik);
+
+            AddStaffWindow window = new AddStaffWindow();
+            window.Owner = this;
+            window.textboxImie.Text = pracownicy[index].Imie;
+            window.textboxDrugieImie.Text = pracownicy[index].DrugieImie;
+            window.textboxNazwisko.Text = pracownicy[index].Nazwisko;
+            window.textboxNazwiskoRodowe.Text = pracownicy[index].NazwiskoRodowe;
+            window.textboxPesel.Text = pracownicy[index].Pesel;
+            window.Photo.Source = new BitmapImage(new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}img\{pracownicy[index].Zdjecie}.png"));
+            window.comboboxPlec.SelectedItem = pracownicy[index].Plec == 'K' ? window.comboboxPlec.Items[0] : window.comboboxPlec.Items[1];
+            window.textboxImieMatki.Text = pracownicy[index].ImieMatki;
+            window.textboxImieOjca.Text = pracownicy[index].ImieOjca;
+            window.datepickerDataUrodzenia.SelectedDate = pracownicy[index].DataUrodzenia;
+            window.textboxEtat.Text = pracownicy[index].Etat;
+            window.textboxOpis.Text = pracownicy[index].Opis;
+            window.datepickerDataZatrudnienia.SelectedDate = pracownicy[index].DataZatrudnienia;
+
+
+            if (window.ShowDialog() == true)
+            {
+                pracownicy[index].Imie = window.textboxImie.Text;
+                pracownicy[index].DrugieImie = window.textboxDrugieImie.Text;
+                pracownicy[index].Nazwisko = window.textboxNazwisko.Text;
+                pracownicy[index].NazwiskoRodowe = window.textboxNazwiskoRodowe.Text;
+                pracownicy[index].Pesel = window.textboxPesel.Text;
+                pracownicy[index].Plec = ((ComboBoxItem)window.comboboxPlec.SelectedItem).Content.ToString()[0];
+                pracownicy[index].ImieMatki = window.textboxImieMatki.Text;
+                pracownicy[index].ImieOjca = window.textboxImieOjca.Text;
+                pracownicy[index].DataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
+                pracownicy[index].Etat = window.textboxEtat.Text;
+                pracownicy[index].Opis = window.textboxOpis.Text;
+                pracownicy[index].DataZatrudnienia = (DateTime)window.datepickerDataZatrudnienia.SelectedDate;
+
+                if (window.bmp != null)
+                {
+                    pracownicy[index].Zdjecie = pracownicy[index].Imie + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                    saveImage(pracownicy[index].Zdjecie, window.bmp);
+                }
+
+                dgPracownicy.Items.Refresh();
+                saveData();
+            }
+        }
 
         private void saveImage(string name, BitmapImage image)
         {
@@ -184,7 +279,7 @@ namespace Sekretariat
         {
             string data = "";
 
-            foreach (Uczen u in uczniowie) 
+            foreach (Uczen u in uczniowie)
                 data += $"student;{u.Imie};{u.DrugieImie};{u.Nazwisko};{u.NazwiskoRodowe};{u.Pesel};{u.Zdjecie};{u.Plec};{u.ImieMatki};{u.ImieOjca};{u.DataUrodzenia.ToShortDateString()};{u.Klasa};{u.Grupy}\n";
 
             foreach (Nauczyciel n in nauczyciele)

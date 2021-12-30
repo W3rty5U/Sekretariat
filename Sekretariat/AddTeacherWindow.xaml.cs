@@ -40,7 +40,7 @@ namespace Sekretariat
                 MessageBox.Show(this, "Brak lub błędnie podany numer PESEL!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (bmp == null)
+            if (Photo.Source == null)
             {
                 MessageBox.Show(this, "Nie dodano zdjęcia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

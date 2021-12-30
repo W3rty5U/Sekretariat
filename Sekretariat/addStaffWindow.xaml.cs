@@ -9,11 +9,11 @@ namespace Sekretariat
     /// <summary>
     /// Interaction logic for addStaffWindow.xaml
     /// </summary>
-    public partial class addStaffWindow : Window
+    public partial class AddStaffWindow : Window
     {
         public BitmapImage bmp;
 
-        public addStaffWindow()
+        public AddStaffWindow()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace Sekretariat
                 MessageBox.Show(this, "Brak lub błędnie podany numer PESEL!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (bmp == null)
+            if (Photo.Source == null)
             {
                 MessageBox.Show(this, "Nie dodano zdjęcia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
