@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
@@ -119,7 +121,53 @@ namespace Sekretariat
                 saveData();
             }
         }
-        
+
+        private void editStudent_Click(object sender, RoutedEventArgs e)
+        {
+            Uczen uczen = (Uczen)((Button)e.Source).DataContext;
+            int index = uczniowie.IndexOf(uczen);
+
+            AddStudentWindow window = new AddStudentWindow();
+            window.Owner = this;
+            window.textboxImie.Text = uczniowie[index].Imie;
+            window.textboxDrugieImie.Text = uczniowie[index].DrugieImie;
+            window.textboxNazwisko.Text = uczniowie[index].Nazwisko;
+            window.textboxNazwiskoRodowe.Text = uczniowie[index].NazwiskoRodowe;
+            window.textboxPesel.Text = uczniowie[index].Pesel;
+            window.Photo.Source = new BitmapImage(new Uri($@"{AppDomain.CurrentDomain.BaseDirectory}img\{uczniowie[index].Zdjecie}.png"));
+            window.comboboxPlec.SelectedItem = uczniowie[index].Plec == 'K' ? window.comboboxPlec.Items[0] : window.comboboxPlec.Items[1];
+            window.textboxImieMatki.Text = uczniowie[index].ImieMatki;
+            window.textboxImieOjca.Text = uczniowie[index].ImieOjca;
+            window.datepickerDataUrodzenia.SelectedDate = uczniowie[index].DataUrodzenia;
+            window.textboxKlasa.Text = uczniowie[index].Klasa;
+            window.textboxGrupy.Text = uczniowie[index].Grupy;
+
+            if (window.ShowDialog() == true)
+            {
+                uczniowie[index].Imie = window.textboxImie.Text;
+                uczniowie[index].DrugieImie = window.textboxDrugieImie.Text;
+                uczniowie[index].Nazwisko = window.textboxNazwisko.Text;
+                uczniowie[index].NazwiskoRodowe = window.textboxNazwiskoRodowe.Text;
+                uczniowie[index].Pesel = window.textboxPesel.Text;
+                uczniowie[index].Plec = window.comboboxPlec.SelectedItem.ToString().Equals("Kobieta") ? 'K' : 'M';
+                uczniowie[index].ImieMatki = window.textboxImieMatki.Text;
+                uczniowie[index].ImieOjca = window.textboxImieOjca.Text;
+                uczniowie[index].DataUrodzenia = (DateTime)window.datepickerDataUrodzenia.SelectedDate;
+                uczniowie[index].Klasa = window.textboxKlasa.Text;
+                uczniowie[index].Grupy = window.textboxGrupy.Text;
+
+                if (window.bmp != null)
+                {
+                    uczniowie[index].Zdjecie = uczniowie[index].Imie + DateTime.Now.ToString("ddMMyyyyHHmmss");
+                    saveImage(uczniowie[index].Zdjecie, window.bmp);
+                }
+
+                dgUczniowie.Items.Refresh();
+                saveData();
+            }
+        }
+
+
         private void saveImage(string name, BitmapImage image)
         {
             if (!Directory.Exists(@".\img"))

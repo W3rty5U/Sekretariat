@@ -44,6 +44,13 @@
                         <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia, Converter={StaticResource DateTimeToStringConverter}}"/>
                         <DataGridTextColumn Header="Klasa" Binding="{Binding Klasa}"/>
                         <DataGridTextColumn Header="Grupy" Binding="{Binding Grupy}"/>
+                        <DataGridTemplateColumn Header="Edytuj">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="editStudent_Click">Edytuj</Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
