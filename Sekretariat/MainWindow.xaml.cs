@@ -263,6 +263,18 @@ namespace Sekretariat
             }
         }
 
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            SearchWindow searchWindow = new SearchWindow();
+
+            searchWindow.cbSearchIn.SelectedIndex = tabControl.SelectedIndex;
+
+            if (searchWindow.ShowDialog() == true)
+            {
+
+            }
+        }
+
         private void saveImage(string name, BitmapImage image)
         {
             if (!Directory.Exists(@".\img"))

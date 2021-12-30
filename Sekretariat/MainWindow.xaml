@@ -19,12 +19,18 @@
                 <MenuItem Header="Eksport"/>
             </MenuItem>
         </Menu>
-        <ToolBar DockPanel.Dock="Top">
-            <Button Click="addStudent_Click">Dodaj ucznia 👨🏻‍🎓</Button>
-            <Button Click="addTeacher_Click">Dodaj nauczyciela 👩🏻‍🏫</Button>
-            <Button Click="addStaff_Click">Dodaj pracownika obsługi 👩‍🍳</Button>
-        </ToolBar>
-        <TabControl DockPanel.Dock="Bottom">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Click="addStudent_Click">Dodaj ucznia 👨🏻‍🎓</Button>
+                <Button Click="addTeacher_Click">Dodaj nauczyciela 👩🏻‍🏫</Button>
+                <Button Click="addStaff_Click">Dodaj pracownika obsługi 👩‍🍳</Button>
+            </ToolBar>
+            <ToolBar>
+                <Button Click="search_Click">Szukaj 🔍</Button>
+                <Button>Raport 📃</Button>
+            </ToolBar>
+        </ToolBarTray>
+        <TabControl Name="tabControl" DockPanel.Dock="Bottom">
             <TabItem Header="Uczniowie">
                 <DataGrid Name="dgUczniowie" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
                     <DataGrid.RowDetailsTemplate>
