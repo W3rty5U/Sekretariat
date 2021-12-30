@@ -10,6 +10,7 @@
         Width="960">
     <Window.Resources>
         <local:StringToBitmapImageConverter x:Key="StringToBitmapImageConverter"/>
+        <local:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -40,7 +41,7 @@
                         <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}"/>
                         <DataGridTextColumn Header="Imię matki" Binding="{Binding ImieMatki}"/>
                         <DataGridTextColumn Header="Imię ojca" Binding="{Binding ImieOjca}"/>
-                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia, Converter={StaticResource DateTimeToStringConverter}}"/>
                         <DataGridTextColumn Header="Klasa" Binding="{Binding Klasa}"/>
                         <DataGridTextColumn Header="Grupy" Binding="{Binding Grupy}"/>
                     </DataGrid.Columns>
@@ -62,11 +63,11 @@
                         <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}"/>
                         <DataGridTextColumn Header="Imię matki" Binding="{Binding ImieMatki}"/>
                         <DataGridTextColumn Header="Imię ojca" Binding="{Binding ImieOjca}"/>
-                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia, Converter={StaticResource DateTimeToStringConverter}}"/>
                         <DataGridTextColumn Header="Wychowawstwo" Binding="{Binding Wychowawstwo}"/>
                         <DataGridTextColumn Header="Przedmioty" Binding="{Binding Przedmioty}"/>
                         <DataGridTextColumn Header="Nauczanie" Binding="{Binding Nauczanie}"/>
-                        <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia}"/>
+                        <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia, Converter={StaticResource DateTimeToStringConverter}}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -90,10 +91,10 @@
                         <DataGridTextColumn Header="Płeć" Binding="{Binding Plec}"/>
                         <DataGridTextColumn Header="Imię matki" Binding="{Binding ImieMatki}"/>
                         <DataGridTextColumn Header="Imię ojca" Binding="{Binding ImieOjca}"/>
-                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia}"/>
+                        <DataGridTextColumn Header="Data urodzenia" Binding="{Binding DataUrodzenia, Converter={StaticResource DateTimeToStringConverter}}"/>
                         <DataGridTextColumn Header="Etat" Binding="{Binding Etat}"/>
                         <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
-                        <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia}"/>
+                        <DataGridTextColumn Header="Data zatrudnienia" Binding="{Binding DataZatrudnienia, Converter={StaticResource DateTimeToStringConverter}}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
