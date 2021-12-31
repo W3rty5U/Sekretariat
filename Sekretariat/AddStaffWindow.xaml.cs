@@ -7,13 +7,13 @@ using System.Windows.Media.Imaging;
 namespace Sekretariat
 {
     /// <summary>
-    /// Interaction logic for AddStudentWindow.xaml
+    /// Interaction logic for addStaffWindow.xaml
     /// </summary>
-    public partial class AddStudentWindow : Window
+    public partial class AddStaffWindow : Window
     {
         public BitmapImage bmp;
 
-        public AddStudentWindow()
+        public AddStaffWindow()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace Sekretariat
                 MessageBox.Show(this, "Brak lub błędnie podane imię!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (!textboxDrugieImie.Text.Equals("") && !Regex.IsMatch(textboxDrugieImie.Text, @"^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$"))
+            if (!Regex.IsMatch(textboxDrugieImie.Text, @"^([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?$"))
             {
                 MessageBox.Show(this, "Błędnie podane drugie imię!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -70,14 +70,19 @@ namespace Sekretariat
                 MessageBox.Show(this, "Nie podano daty urodzenia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (!Regex.IsMatch(textboxKlasa.Text, @"^\d\w+$"))
+            if (textboxEtat.Text.Contains(";"))
             {
-                MessageBox.Show(this, "Brak lub błędnie podana klasa!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this, "Niedozwolony znak (;) w etacie!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (textboxGrupy.Text.Contains(";"))
+            if (textboxOpis.Text.Contains(";"))
             {
-                MessageBox.Show(this, "Niedozwolony znak (;) w grupach!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this, "Niedozwolony znak (;) w opisie!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (datepickerDataZatrudnienia.ToString().Equals(""))
+            {
+                MessageBox.Show(this, "Nie podano daty zatrudnienia!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
