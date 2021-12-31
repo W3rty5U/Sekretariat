@@ -269,6 +269,45 @@ namespace Sekretariat
             }
         }
 
+        private void deleteStudent_Click(object sender, RoutedEventArgs e)
+        {
+            Uczen uczen = (Uczen)((Button)e.Source).DataContext;
+            int index = uczniowie.IndexOf(uczen);
+            MessageBoxResult result = MessageBox.Show(this, $"Czy napewno chcesz usunąć ten wpis?\n{uczen.Imie} {uczen.Nazwisko}", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                uczniowie.RemoveAt(index);
+                dgUczniowie.Items.Refresh();
+                saveData();
+            }
+        }
+
+        private void deleteTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            Nauczyciel nauczyciel = (Nauczyciel)((Button)e.Source).DataContext;
+            int index = nauczyciele.IndexOf(nauczyciel);
+            MessageBoxResult result = MessageBox.Show(this, $"Czy napewno chcesz usunąć ten wpis?\n{nauczyciel.Imie} {nauczyciel.Nazwisko}", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                nauczyciele.RemoveAt(index);
+                dgNauczyciele.Items.Refresh();
+                saveData();
+            }
+        }
+
+        private void deleteStaff_Click(object sender, RoutedEventArgs e)
+        {
+            Pracownik pracownik = (Pracownik)((Button)e.Source).DataContext;
+            int index = pracownicy.IndexOf(pracownik);
+            MessageBoxResult result = MessageBox.Show(this, $"Czy napewno chcesz usunąć ten wpis?\n{pracownik.Imie} {pracownik.Nazwisko}", "Usuwanie", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                pracownicy.RemoveAt(index);
+                dgPracownicy.Items.Refresh();
+                saveData();
+            }
+        }
+
         private void search_Click(object sender, RoutedEventArgs e)
         {
             SearchWindow searchWindow = new SearchWindow();
