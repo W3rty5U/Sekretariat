@@ -27,6 +27,7 @@
             </ToolBar>
             <ToolBar>
                 <Button Click="search_Click">Szukaj 🔍</Button>
+                <Button Name="clearSearchBtn" Click="clearSearch_Click">Wyczyść wyszukiwanie ♻</Button>
                 <Button>Raport 📃</Button>
             </ToolBar>
         </ToolBarTray>

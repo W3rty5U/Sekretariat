@@ -30,6 +30,8 @@ namespace Sekretariat
             dgUczniowie.ItemsSource = uczniowie;
             dgNauczyciele.ItemsSource = nauczyciele;
             dgPracownicy.ItemsSource = pracownicy;
+
+            clearSearchBtn.IsEnabled = false;
         }
         private void addStudent_Click(object sender, RoutedEventArgs e)
         {
@@ -326,6 +328,7 @@ namespace Sekretariat
                         }
                     }
                     dgUczniowie.ItemsSource = wynikiUczniowie;
+                    dgUczniowie.Items.Refresh();
                 }
                 else if (searchWindow.cbSearchIn.SelectedIndex == 1)
                 {
@@ -389,6 +392,7 @@ namespace Sekretariat
                         }
                     }
                     dgNauczyciele.ItemsSource = wynikiNauczyciele;
+                    dgNauczyciele.Items.Refresh();
                 }
                 else if (searchWindow.cbSearchIn.SelectedIndex == 2)
                 {
@@ -448,8 +452,21 @@ namespace Sekretariat
                         }
                     }
                     dgPracownicy.ItemsSource = wynikiPracownicy;
+                    dgPracownicy.Items.Refresh();
                 }
+                clearSearchBtn.IsEnabled = true;
             }
+        }
+
+        private void clearSearch_Click(object sender, RoutedEventArgs e)
+        {
+            dgUczniowie.ItemsSource = uczniowie;
+            dgNauczyciele.ItemsSource = nauczyciele;
+            dgPracownicy.ItemsSource = pracownicy;
+
+            dgUczniowie.Items.Refresh();
+            dgNauczyciele.Items.Refresh();
+            dgPracownicy.Items.Refresh();
         }
 
         private void saveImage(string name, BitmapImage image)
