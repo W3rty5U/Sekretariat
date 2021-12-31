@@ -25,7 +25,7 @@ namespace Sekretariat
                 MessageBox.Show(this, "Brak lub błędnie podane imię!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (!textboxDrugieImie.Text.Equals("") && !Regex.IsMatch(textboxDrugieImie.Text, @"^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$"))
+            if (!Regex.IsMatch(textboxDrugieImie.Text, @"^([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?$"))
             {
                 MessageBox.Show(this, "Błędnie podane drugie imię!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;

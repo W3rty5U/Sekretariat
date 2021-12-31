@@ -25,7 +25,7 @@ namespace Sekretariat
                 MessageBox.Show(this, "Brak lub błędnie podane imię!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (!textboxDrugieImie.Text.Equals("") && !Regex.IsMatch(textboxDrugieImie.Text, @"^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$"))
+            if (!Regex.IsMatch(textboxDrugieImie.Text, @"^([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?$"))
             {
                 MessageBox.Show(this, "Błędnie podane drugie imię!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -33,6 +33,11 @@ namespace Sekretariat
             if (!Regex.IsMatch(textboxNazwisko.Text, @"^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(-[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?$"))
             {
                 MessageBox.Show(this, "Brak lub błędnie podane nazwisko!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (!Regex.IsMatch(textboxNazwiskoRodowe.Text, @"^([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(-[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?)?$"))
+            {
+                MessageBox.Show(this, "Błędnie podane nazwisko rodowe!", "Nieprawidłowe dane", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (!Regex.IsMatch(textboxPesel.Text, @"^[0-9]{11}$"))
