@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace Sekretariat
@@ -33,6 +34,8 @@ namespace Sekretariat
             dgPracownicy.ItemsSource = pracownicy;
 
             clearSearchBtn.IsEnabled = false;
+
+            loadBindings();
         }
         private void addStudent_Click(object sender, RoutedEventArgs e)
         {
@@ -585,6 +588,60 @@ namespace Sekretariat
             uczniowie.AddRange(dodaniUczniowie);
             nauczyciele.AddRange(dodaniNauczyciele);
             pracownicy.AddRange(dodaniPracownicy);
+        }
+
+        private void loadBindings()
+        {
+            int[] modifiers = { 2, 2, 2, 2, 2, 2 };
+            int[] keys = { 90, 91, 92, 93, 94, 95};
+
+            if (File.Exists($"{AppDomain.CurrentDomain.BaseDirectory}bindings.txt"))
+            {
+                string[] data = File.ReadAllLines($"{AppDomain.CurrentDomain.BaseDirectory}bindings.txt");
+                for (int i = 0; i < 6; i++)
+                {
+                    string[] line = data[i].Split(';');
+                    modifiers[i] = int.Parse(line[0]);
+                    keys[i] = int.Parse(line[1]);
+                }
+
+            }
+
+            CommandBindings.Clear();
+
+            RoutedCommand addStudentCmd = new RoutedCommand();
+            addStudentCmd.InputGestures.Add(new KeyGesture((Key)keys[0], (ModifierKeys)modifiers[0]));
+            CommandBindings.Add(new CommandBinding(addStudentCmd, addStudent_Click));
+            RoutedCommand addTeacherCmd = new RoutedCommand();
+            addTeacherCmd.InputGestures.Add(new KeyGesture((Key)keys[1], (ModifierKeys)modifiers[1]));
+            CommandBindings.Add(new CommandBinding(addTeacherCmd, addTeacher_Click));
+            RoutedCommand addStaffCmd = new RoutedCommand();
+            addStaffCmd.InputGestures.Add(new KeyGesture((Key)keys[2], (ModifierKeys)modifiers[2]));
+            CommandBindings.Add(new CommandBinding(addStaffCmd, addStaff_Click));
+            RoutedCommand searchCmd = new RoutedCommand();
+            searchCmd.InputGestures.Add(new KeyGesture((Key)keys[3], (ModifierKeys)modifiers[3]));
+            CommandBindings.Add(new CommandBinding(searchCmd, search_Click));
+            RoutedCommand clearSearchCmd = new RoutedCommand();
+            clearSearchCmd.InputGestures.Add(new KeyGesture((Key)keys[4], (ModifierKeys)modifiers[4]));
+            CommandBindings.Add(new CommandBinding(clearSearchCmd, clearSearch_Click));
+            RoutedCommand saveResultsCmd = new RoutedCommand();
+            saveResultsCmd.InputGestures.Add(new KeyGesture((Key)keys[5], (ModifierKeys)modifiers[5]));
+            CommandBindings.Add(new CommandBinding(saveResultsCmd, saveResults_Click));
+
+            saveBindings();
+        }
+
+        private void saveBindings()
+        {
+            string data = "";
+
+            foreach (CommandBinding binding in CommandBindings)
+            {
+                KeyGesture keyGesture = (KeyGesture)((RoutedCommand)binding.Command).InputGestures[0];
+                data += $"{(int)keyGesture.Modifiers};{(int)keyGesture.Key}\n";
+            }
+
+            File.WriteAllText($"{AppDomain.CurrentDomain.BaseDirectory}bindings.txt", data);
         }
 
         public class Osoba
