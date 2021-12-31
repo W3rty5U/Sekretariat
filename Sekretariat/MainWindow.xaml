@@ -28,7 +28,7 @@
             <ToolBar>
                 <Button Click="search_Click">Szukaj 🔍</Button>
                 <Button Name="clearSearchBtn" Click="clearSearch_Click">Wyczyść wyszukiwanie ♻</Button>
-                <Button>Raport 📃</Button>
+                <Button Click="saveResults_Click">Raport 📃</Button>
             </ToolBar>
         </ToolBarTray>
         <TabControl Name="tabControl" DockPanel.Dock="Bottom">

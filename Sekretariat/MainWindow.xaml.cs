@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -467,6 +468,32 @@ namespace Sekretariat
             dgUczniowie.Items.Refresh();
             dgNauczyciele.Items.Refresh();
             dgPracownicy.Items.Refresh();
+        }
+
+        private void saveResults_Click(object sender, RoutedEventArgs e)
+        {
+            string data = "";
+
+            if (tabControl.SelectedIndex == 0)
+                foreach (Uczen u in dgUczniowie.ItemsSource)
+                    data += $"student;{u.Imie};{u.DrugieImie};{u.Nazwisko};{u.NazwiskoRodowe};{u.Pesel};{u.Plec};{u.ImieMatki};{u.ImieOjca};{u.DataUrodzenia.ToShortDateString()};{u.Klasa};{u.Grupy}\n";
+
+            else if (tabControl.SelectedIndex == 1)
+                foreach (Nauczyciel n in dgNauczyciele.ItemsSource)
+                    data += $"teacher;{n.Imie};{n.DrugieImie};{n.Nazwisko};{n.NazwiskoRodowe};{n.Pesel};{n.Plec};{n.ImieMatki};{n.ImieOjca};{n.DataUrodzenia.ToShortDateString()};{n.Wychowawstwo};{n.Przedmioty};{n.Nauczanie};{n.DataZatrudnienia.ToShortDateString()}\n";
+
+            else if (tabControl.SelectedIndex == 2)
+                foreach (Pracownik p in dgPracownicy.ItemsSource)
+                    data += $"staff;{p.Imie};{p.DrugieImie};{p.Nazwisko};{p.NazwiskoRodowe};{p.Pesel};{p.Plec};{p.ImieMatki};{p.ImieOjca};{p.DataUrodzenia.ToShortDateString()};{p.Etat};{p.Opis};{p.DataZatrudnienia.ToShortDateString()}\n";
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Pliki tekstowe (*.txt)|*.txt|Wszystkie pliki (*.*)|*.*";
+            saveFileDialog.FileName = $"Raport{DateTime.Now:ddMMyyyyHHmmss}.txt";
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, data);
+            }
         }
 
         private void saveImage(string name, BitmapImage image)
