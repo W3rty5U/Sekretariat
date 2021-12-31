@@ -318,8 +318,32 @@ namespace Sekretariat
                                     wynikiUczniowie.Add(u);
                                 break;
                             case 8:
-                                if (u.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                if (searchPhrase[0].Equals('<'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (u.DataUrodzenia <= dateTime)
+                                        {
+                                            wynikiUczniowie.Add(u);
+                                        }
+                                    }
+                                }
+                                else if (searchPhrase[0].Equals('>'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (u.DataUrodzenia >= dateTime)
+                                        {
+                                            wynikiUczniowie.Add(u);
+                                        }
+                                    }
+                                }
+                                else if (u.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                {
                                     wynikiUczniowie.Add(u);
+                                }
                                 break;
                             case 9:
                                 if (u.Klasa.Contains(searchPhrase))
@@ -374,8 +398,32 @@ namespace Sekretariat
                                     wynikiNauczyciele.Add(n);
                                 break;
                             case 8:
-                                if (n.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                if (searchPhrase[0].Equals('<'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (n.DataUrodzenia <= dateTime)
+                                        {
+                                            wynikiNauczyciele.Add(n);
+                                        }
+                                    }
+                                }
+                                else if (searchPhrase[0].Equals('>'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (n.DataUrodzenia >= dateTime)
+                                        {
+                                            wynikiNauczyciele.Add(n);
+                                        }
+                                    }
+                                }
+                                else if (n.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                {
                                     wynikiNauczyciele.Add(n);
+                                }
                                 break;
                             case 9:
                                 if (n.Wychowawstwo.Contains(searchPhrase))
@@ -390,8 +438,32 @@ namespace Sekretariat
                                     wynikiNauczyciele.Add(n);
                                 break;
                             case 12:
-                                if (n.DataZatrudnienia.ToShortDateString().Contains(searchPhrase))
+                                if (searchPhrase[0].Equals('<'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (n.DataZatrudnienia <= dateTime)
+                                        {
+                                            wynikiNauczyciele.Add(n);
+                                        }
+                                    }
+                                }
+                                else if (searchPhrase[0].Equals('>'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (n.DataZatrudnienia >= dateTime)
+                                        {
+                                            wynikiNauczyciele.Add(n);
+                                        }
+                                    }
+                                }
+                                else if (n.DataZatrudnienia.ToShortDateString().Contains(searchPhrase))
+                                {
                                     wynikiNauczyciele.Add(n);
+                                }
                                 break;
                         }
                     }
@@ -438,8 +510,32 @@ namespace Sekretariat
                                     wynikiPracownicy.Add(p);
                                 break;
                             case 8:
-                                if (p.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                if (searchPhrase[0].Equals('<'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (p.DataUrodzenia <= dateTime)
+                                        {
+                                            wynikiPracownicy.Add(p);
+                                        }
+                                    }
+                                }
+                                else if (searchPhrase[0].Equals('>'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (p.DataUrodzenia >= dateTime)
+                                        {
+                                            wynikiPracownicy.Add(p);
+                                        }
+                                    }
+                                }
+                                else if (p.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                {
                                     wynikiPracownicy.Add(p);
+                                }
                                 break;
                             case 9:
                                 if (p.Etat.Contains(searchPhrase))
@@ -450,8 +546,32 @@ namespace Sekretariat
                                     wynikiPracownicy.Add(p);
                                 break;
                             case 11:
-                                if (p.DataZatrudnienia.ToShortDateString().Contains(searchPhrase))
+                                if (searchPhrase[0].Equals('<'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (p.DataZatrudnienia <= dateTime)
+                                        {
+                                            wynikiPracownicy.Add(p);
+                                        }
+                                    }
+                                }
+                                else if (searchPhrase[0].Equals('>'))
+                                {
+                                    DateTime dateTime;
+                                    if (DateTime.TryParse(searchPhrase.Substring(1), out dateTime))
+                                    {
+                                        if (p.DataZatrudnienia >= dateTime)
+                                        {
+                                            wynikiPracownicy.Add(p);
+                                        }
+                                    }
+                                }
+                                else if (p.DataZatrudnienia.ToShortDateString().Contains(searchPhrase))
+                                {
                                     wynikiPracownicy.Add(p);
+                                }
                                 break;
                         }
                     }
