@@ -271,7 +271,184 @@ namespace Sekretariat
 
             if (searchWindow.ShowDialog() == true)
             {
-
+                string searchPhrase = searchWindow.tbSearchFor.Text;
+                if (searchWindow.cbSearchIn.SelectedIndex == 0)
+                {
+                    List<Uczen> wynikiUczniowie = new List<Uczen>();
+                    foreach (Uczen u in uczniowie)
+                    {
+                        switch (searchWindow.cbSearchFor.SelectedIndex)
+                        {
+                            case 0:
+                                if (u.Imie.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 1:
+                                if (u.DrugieImie.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 2:
+                                if (u.Nazwisko.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 3:
+                                if (u.NazwiskoRodowe.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 4:
+                                if (u.Pesel.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 5:
+                                if (u.Plec == searchPhrase.ToUpper()[0])
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 6:
+                                if (u.ImieMatki.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 7:
+                                if (u.ImieOjca.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 8:
+                                if (u.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 9:
+                                if (u.Klasa.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                            case 10:
+                                if (u.Grupy.Contains(searchPhrase))
+                                    wynikiUczniowie.Add(u);
+                                break;
+                        }
+                    }
+                    dgUczniowie.ItemsSource = wynikiUczniowie;
+                }
+                else if (searchWindow.cbSearchIn.SelectedIndex == 1)
+                {
+                    List<Nauczyciel> wynikiNauczyciele = new List<Nauczyciel>();
+                    foreach (Nauczyciel n in nauczyciele)
+                    {
+                        switch (searchWindow.cbSearchFor.SelectedIndex)
+                        {
+                            case 0:
+                                if (n.Imie.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 1:
+                                if (n.DrugieImie.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 2:
+                                if (n.Nazwisko.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 3:
+                                if (n.NazwiskoRodowe.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 4:
+                                if (n.Pesel.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 5:
+                                if (n.Plec == searchPhrase.ToUpper()[0])
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 6:
+                                if (n.ImieMatki.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 7:
+                                if (n.ImieOjca.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 8:
+                                if (n.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 9:
+                                if (n.Wychowawstwo.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 10:
+                                if (n.Przedmioty.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 11:
+                                if (n.Nauczanie.Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                            case 12:
+                                if (n.DataZatrudnienia.ToShortDateString().Contains(searchPhrase))
+                                    wynikiNauczyciele.Add(n);
+                                break;
+                        }
+                    }
+                    dgNauczyciele.ItemsSource = wynikiNauczyciele;
+                }
+                else if (searchWindow.cbSearchIn.SelectedIndex == 2)
+                {
+                    List<Pracownik> wynikiPracownicy = new List<Pracownik>();
+                    foreach (Pracownik p in pracownicy)
+                    {
+                        switch (searchWindow.cbSearchFor.SelectedIndex)
+                        {
+                            case 0:
+                                if (p.Imie.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 1:
+                                if (p.DrugieImie.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 2:
+                                if (p.Nazwisko.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 3:
+                                if (p.NazwiskoRodowe.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 4:
+                                if (p.Pesel.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 5:
+                                if (p.Plec == searchPhrase.ToUpper()[0])
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 6:
+                                if (p.ImieMatki.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 7:
+                                if (p.ImieOjca.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 8:
+                                if (p.DataUrodzenia.ToShortDateString().Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 9:
+                                if (p.Etat.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 10:
+                                if (p.Opis.Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                            case 11:
+                                if (p.DataZatrudnienia.ToShortDateString().Contains(searchPhrase))
+                                    wynikiPracownicy.Add(p);
+                                break;
+                        }
+                    }
+                    dgPracownicy.ItemsSource = wynikiPracownicy;
+                }
             }
         }
 

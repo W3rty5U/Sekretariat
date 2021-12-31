@@ -15,6 +15,11 @@ namespace Sekretariat
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
+            if (cbSearchIn.SelectedIndex == -1 || cbSearchFor.SelectedIndex == -1 || tbSearchFor.Text.Equals(""))
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!");
+                return;
+            }
             DialogResult = true;
         }
 
