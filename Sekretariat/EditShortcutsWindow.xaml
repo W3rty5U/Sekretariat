@@ -1,0 +1,94 @@
+﻿<Window x:Class="Sekretariat.EditShortcutsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sekretariat"
+        mc:Ignorable="d"
+        Title="Edytuj skróty"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize">
+    <Grid Margin="10">
+
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Width" Value="75"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="5,0,0,5"/>
+                <Setter Property="Width" Value="75"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5,0,0,0"/>
+                <Setter Property="Width" Value="50"/>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Label>Dodaj ucznia:</Label>
+        <ComboBox Name="addStudentCb" Grid.Column="1">
+            <ComboBoxItem>Control</ComboBoxItem>
+            <ComboBoxItem>Alt</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="tb1" Grid.Column="2" KeyUp="TextBox_KeyUp" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+        <Label Grid.Row="1">Dodaj nauczyciela:</Label>
+        <ComboBox Name="addTeacherCb" Grid.Column="1" Grid.Row="1">
+            <ComboBoxItem>Control</ComboBoxItem>
+            <ComboBoxItem>Alt</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="tb2" Grid.Column="2" Grid.Row="1" KeyUp="TextBox_KeyUp" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+        <Label Grid.Row="2">Dodaj pracownika:</Label>
+        <ComboBox Name="addStaffCb" Grid.Column="1" Grid.Row="2">
+            <ComboBoxItem>Control</ComboBoxItem>
+            <ComboBoxItem>Alt</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="tb3" Grid.Column="2" Grid.Row="2" KeyUp="TextBox_KeyUp" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+        <Label Grid.Row="3">Szukaj:</Label>
+        <ComboBox Name="searchCb" Grid.Column="1" Grid.Row="3">
+            <ComboBoxItem>Control</ComboBoxItem>
+            <ComboBoxItem>Alt</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="tb4" Grid.Column="2" Grid.Row="3" KeyUp="TextBox_KeyUp" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+        <Label Grid.Row="4">Wyczyść wyszukiwanie:</Label>
+        <ComboBox Name="clearSearchCb" Grid.Column="1" Grid.Row="4">
+            <ComboBoxItem>Control</ComboBoxItem>
+            <ComboBoxItem>Alt</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="tb5" Grid.Column="2" Grid.Row="4" KeyUp="TextBox_KeyUp" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+        <Label Grid.Row="5">Raport:</Label>
+        <ComboBox Name="saveSearchCb" Grid.Column="1" Grid.Row="5">
+            <ComboBoxItem>Control</ComboBoxItem>
+            <ComboBoxItem>Alt</ComboBoxItem>
+        </ComboBox>
+        <TextBox Name="tb6" Grid.Column="2" Grid.Row="5" KeyUp="TextBox_KeyUp" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="3" HorizontalAlignment="Right">
+            <Button Click="okButton_Click">Ok</Button>
+            <Button Click="cancelButton_Click" IsCancel="True">Anuluj</Button>
+        </StackPanel>
+    </Grid>
+</Window>

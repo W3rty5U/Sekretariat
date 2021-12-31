@@ -14,9 +14,13 @@
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Plik">
-                <MenuItem Header="Import"/>
-                <MenuItem Header="Eksport"/>
+            <MenuItem Header="_Dodaj">
+                <MenuItem Header="Dodaj _ucznia 👨" Click="addStudent_Click"/>
+                <MenuItem Header="Dodaj _nauczyciela 👩🏻‍🏫" Click="addTeacher_Click"/>
+                <MenuItem Header="Dodaj _pracownika obsługi 👩" Click="addStaff_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Opcje">
+                <MenuItem Header="Edytuj _skróty ⚙" Click="editShortcuts_Click"/>
             </MenuItem>
         </Menu>
         <ToolBarTray DockPanel.Dock="Top">

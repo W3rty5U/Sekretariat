@@ -499,6 +499,65 @@ namespace Sekretariat
             }
         }
 
+        private void editShortcuts_Click(object sender, RoutedEventArgs e)
+        {
+            EditShortcutsWindow window = new EditShortcutsWindow();
+
+            CommandBindingCollection bindings = CommandBindings;
+
+            List<KeyGesture> gestures = new List<KeyGesture>();
+
+            foreach (CommandBinding binding in CommandBindings)
+            {
+                gestures.Add((KeyGesture)((RoutedCommand)binding.Command).InputGestures[0]);
+            }
+
+            window.addStudentCb.SelectedIndex = gestures[0].Modifiers == ModifierKeys.Control ? 0 : 1;
+            window.addTeacherCb.SelectedIndex = gestures[1].Modifiers == ModifierKeys.Control ? 0 : 1;
+            window.addStaffCb.SelectedIndex = gestures[2].Modifiers == ModifierKeys.Control ? 0 : 1;
+            window.searchCb.SelectedIndex = gestures[3].Modifiers == ModifierKeys.Control ? 0 : 1;
+            window.clearSearchCb.SelectedIndex = gestures[4].Modifiers == ModifierKeys.Control ? 0 : 1;
+            window.saveSearchCb.SelectedIndex = gestures[5].Modifiers == ModifierKeys.Control ? 0 : 1;
+
+            window.tb1.Text = gestures[0].Key.ToString();
+            window.tb2.Text = gestures[1].Key.ToString();
+            window.tb3.Text = gestures[2].Key.ToString();
+            window.tb4.Text = gestures[3].Key.ToString();
+            window.tb5.Text = gestures[4].Key.ToString();
+            window.tb6.Text = gestures[5].Key.ToString();
+
+            for (int i = 0; i < 6; i++)
+            {
+                window.keys[i] = (int)gestures[i].Key;
+            }
+
+            if (window.ShowDialog() == true)
+            {
+                CommandBindings.Clear();
+
+                RoutedCommand addStudentCmd = new RoutedCommand();
+                addStudentCmd.InputGestures.Add(new KeyGesture((Key)window.keys[0], window.addStudentCb.SelectedIndex == 0 ? ModifierKeys.Control : ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(addStudentCmd, addStudent_Click));
+                RoutedCommand addTeacherCmd = new RoutedCommand();
+                addTeacherCmd.InputGestures.Add(new KeyGesture((Key)window.keys[1], window.addTeacherCb.SelectedIndex == 0 ? ModifierKeys.Control : ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(addTeacherCmd, addTeacher_Click));
+                RoutedCommand addStaffCmd = new RoutedCommand();
+                addStaffCmd.InputGestures.Add(new KeyGesture((Key)window.keys[2], window.addStaffCb.SelectedIndex == 0 ? ModifierKeys.Control : ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(addStaffCmd, addStaff_Click));
+                RoutedCommand searchCmd = new RoutedCommand();
+                searchCmd.InputGestures.Add(new KeyGesture((Key)window.keys[3], window.searchCb.SelectedIndex == 0 ? ModifierKeys.Control : ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(searchCmd, search_Click));
+                RoutedCommand clearSearchCmd = new RoutedCommand();
+                clearSearchCmd.InputGestures.Add(new KeyGesture((Key)window.keys[4], window.clearSearchCb.SelectedIndex == 0 ? ModifierKeys.Control : ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(clearSearchCmd, clearSearch_Click));
+                RoutedCommand saveResultsCmd = new RoutedCommand();
+                saveResultsCmd.InputGestures.Add(new KeyGesture((Key)window.keys[5], window.saveSearchCb.SelectedIndex == 0 ? ModifierKeys.Control : ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(saveResultsCmd, saveResults_Click));
+
+                saveBindings();
+            }
+        }
+
         private void saveImage(string name, BitmapImage image)
         {
             if (!Directory.Exists(@".\img"))
