@@ -1,0 +1,18 @@
+# Testowanie
+- wszystkie przyciski **działają**
+- dodawanie osób **działa**
+  - aczkolwiek można wpisać osoby które jeszcze się nie urodziły
+- edycja danych **działa**
+- usuwanie osób **działa**
+- zdjęcia **działają**
+- zapis wprowadzonych danych **działa**
+- odczyt zapisanych danych **działa**
+- wprowadzanie skrótów **do poprawy**
+  - użytkownik może wprowadzić ten sam skrót kilka razy
+- zapis skrótów **działa**
+- odczyt skrótów **działa**
+- wyszukiwanie **działa**
+- czyszczenie wyszukiwania **działa**
+- generowanie raportu **działa**
+- edycja danych **działa**
+- sortowanie **działa**
